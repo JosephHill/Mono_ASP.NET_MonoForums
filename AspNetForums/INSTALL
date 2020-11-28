@@ -1,0 +1,80 @@
+Assumptions:
+You have installed Mono 1.0 (probably from Red Carpet or rpm)
+Specific packages include (plus dependencies):
+	mono-core
+        mono-web-forms
+	mono-data-postgresql
+	mono-remoting
+	xsp
+
+You have installed mod_mono 1.0
+
+Have postgres installed 
+
+Need to have plpgsql registered in template1; otherwise, use included install script (plpgsql.sql) to install into template1 or into the aspnetforums db after completing the INSTALL steps.
+
+1) As root, install the database "aspnetforums":
+
+        sudo ./init.sh
+
+2) Ensure that the postgres application user (aspnetforumsuser above) can connect through tcpip
+
+	a) Enable tcpip in postgresql.conf *  (This is probably the first setting in the file, just change it from false to true and uncomment it)
+
+		tcpip_socket = true
+
+	b) In pg_hba.conf *, add this line for the least priveleged settings for the app to connect (where aspnetforumsuser is the user created in the step above)
+
+		host    aspnetforums    aspnetforumsuser    127.0.0.1    255.255.255.255    password
+
+* In Red Hat 9 / Fedora Core 1, these files are located in /var/lib/pgsql/data/
+
+3)  Restart postgres
+
+4)  Configure apache in httpd.conf * (If you've ran anything in mod_mono, you've probably done most of this...)
+
+	a)  Add these lines (setting mono to handle requests to your application):
+
+MonoApplications "/aspnetforums:/your/application/root"
+<Directory /your/application/root>
+        SetHandler mono
+</Directory>
+
+	b)  Add this line to reference the application root
+
+		Alias /aspnetforums "/your/application/root"
+
+	c)  Ensure that Default.aspx is in the DirectoryIndex 
+
+		DirectoryIndex index.html index.html.var default.aspx
+
+* In Red Hat 9 / Fedora Core 1, this file is located in /etc/httpd/conf/
+
+
+5)  Build the Components
+	a) # You only need to make the "Engine" project in order to build the AspNetForums.dll that will be consumed by the forums web application. From the command line in the AspNetForums/Engine directory, execute:
+   [ Engine]$ 	make 	  
+# Copy the resulting AspNetForums.dll from the AspNetForums/Engine directory to the Web Application bin (AspNetForums/AspNetForums/bin/). Execute:
+   [ Engine]$ 	cp bin/Debug/AspNetForums.dll ../AspNetForums/bin/ 	  
+
+6)  Restart Apache
+
+
+7)  Edit Web.config and change "yourpassword" in the connectionString in the AppSettings section to your aspnetforumsuser user password.
+
+8)  It may be necessary to restart mono (mod_mono server) after doing the build
+
+	a) killall mono 
+
+------------------------------------------------
+
+This port of the ASP.NET Forums to Mono / PostgreSQL was performed by Joseph Hill (jhill@arcfocus.com).
+Please report bugs / issues with this port to jhill@arcfocus.com.  
+See LICENSE file for information regarding the license of this software.
+
+For news and updates, please check www.arcfocus.com and www.monotropa.net
+
+Thank you.
+
+------------------------------------------------
+

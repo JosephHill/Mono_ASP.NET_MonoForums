@@ -1,0 +1,4 @@
+CREATE USER test WITH PASSWORD 'test';
+CREATE DATABASE aspnetforums WITH OWNER=test ENCODING='UTF8';
+\connect aspnetforums
+CREATE PROCEDURAL LANGUAGE plpgsql;

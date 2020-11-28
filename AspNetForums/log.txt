@@ -1,0 +1,11 @@
+12:50:48 AM Wednesday, November 17, 2004: [Checking system requirements]
+12:50:48 AM Wednesday, November 17, 2004: [Pass] Detected a local instance of SQL Server.
+12:50:48 AM Wednesday, November 17, 2004: [Pass] Determined SQL Server version (8.00.194).
+12:50:48 AM Wednesday, November 17, 2004: [Pass] Detected .NET Framework.
+12:50:48 AM Wednesday, November 17, 2004: [Pass] Detected Internet Information Server (IIS).
+12:50:52 AM Wednesday, November 17, 2004: [Begin Sample Configuration]
+12:50:55 AM Wednesday, November 17, 2004: [Pass] Created IIS virtual directory.: AspNetForums
+12:50:55 AM Wednesday, November 17, 2004: [Pass] Determined SQL Server version (8.00.194).
+12:51:02 AM Wednesday, November 17, 2004: [Fail] Could not add ASPNET user to SQL Server.
+Cannot generate SSPI context.
+12:51:02 AM Wednesday, November 17, 2004: [Done]

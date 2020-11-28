@@ -1,0 +1,49 @@
+=====================
+Release 7 - October 19, 2007 
+              	- Committed several fixes to outdated sql
+                - Added sql scripts to modify owner of table, functions,
+                  sequences.
+                - Consolidated *.sql scripts into single init.sh script
+                  which can be executed as root, but create
+                  database objects with the proper owners and permissions.
+                - Changed default database name to aspnetforums, and default
+                  database username and password to test to match other
+                  asp.net starter kits released for mono.
+
+=====================
+Release 6  - December 26, 2004
+	Reverted workaround for Mono bug #69194 from Release 5, which is corrected in Mono 1.0.5 and 1.1.3.
+
+=====================
+Release 5  - November 10, 2004
+	Forked source to support the new NpgsqlDataTypes in Mono 1.1.  This is the 1.0 branch source.  Be sure to download the correct version.
+	Corrected an issue which caused statistics to be reported incorrectly when posts were moved to other forums.
+	Included workaround for Mono bug #69194, which occurs in 1.0.4 and 1.1.2 and causes Cached objects to expire prematurely (crashing the forums).
+
+=====================
+Release 4  - October 31, 2004
+	Corrected several issues with data access and stored procedures:
+		next / previous thread navigation in post list now works
+		"Hide Read Threads" link button works correctly
+		"Move Post" linkbutton works for admin now.
+		User Search in Member list is corrected.
+		Reply count and Last Poster now display the correct information in post list
+	"Newest to Oldest" and "Threaded View" options in post list have been removed because these functions were broken in the original asp.net forums release this version of the forums were ported from.
+	"Preview Post" and use of HTML in posts have been enabled by setting validateRequest="false" in AddPost.aspx
+	Added more workarounds so that users can edit their profiles correctly	
+
+=====================
+Release 3  - October 26, 2004
+	Corrected forums_reversetrackingoption in ddl and NpgsqlDataProvider.cs to allow users to be emailed notifications when there are new posts on replies.  Also included some workarounds for Mono bug #60323, which is fixed in CVS, so these fixes should be removed in the next release.
+
+=====================
+Release 2  - October 12, 2004
+	Corrected several case sensitivity issues with file names. Also, adjusted binary fields in the PostgreSQL database to more closely match the original ASP.NET Forums.
+
+
+=====================
+Release 1  - July 15, 2004
+	Initial Release for Mono 1.0
+
+
+
